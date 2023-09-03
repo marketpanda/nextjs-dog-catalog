@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react' 
 import Image from 'next/image'
+import Link from 'next/link'
   
 
 export default function ClientComponent({ 
@@ -10,6 +11,7 @@ export default function ClientComponent({
   const [dog, setDog] = useState('https://clipart-library.com/images_k/dog-silhouette-png/dog-silhouette-png-7.png')
   const [loading, setLoading] = useState(false)
   const [theBreed, setTheBreed] = useState('')
+  const [curList, setCurList] = useState(repeat)
 
   const promise64 = ''
 
@@ -25,6 +27,24 @@ export default function ClientComponent({
         setLoading(false)        
       })
        
+  }
+
+  function alphabet() {
+    let stringAlphabet = []
+    for (let i = 97; i <= 122; i++) {
+      stringAlphabet.push(String.fromCharCode(i))
+    }
+     
+    return stringAlphabet
+  }
+
+  const stringAlpha = alphabet()
+
+  function filterBreeds(theChar, arr) {
+    console.log('letter is ', theChar)
+    const newArr = arr.filter(dList => dList.dogType.charAt(0)  === theChar )
+    setCurList(newArr) 
+    console.log(newArr)
   }
   
   return (
@@ -50,9 +70,25 @@ export default function ClientComponent({
           )
         } 
       </div> 
-      <div>a to z</div>
+      <div>{
+        stringAlpha.map((letter) => (
+          <>
+            <button
+            className='m-1 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+            onClick={() => filterBreeds(letter, repeat)}>
+            {letter}
+            </button> 
+          </> 
+        )) 
+      }
+        <button
+            className='m-1 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+            onClick={() => setCurList(repeat)}>
+          all
+        </button>
+      </div>
       <div> 
-          {repeat.map((dog, index) =>(
+          {curList.map((dog, index) =>(
             <> 
               <div key={index}> 
                   <button
