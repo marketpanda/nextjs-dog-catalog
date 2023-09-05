@@ -4,18 +4,19 @@ import Dog from './dogProfile'
  
 import ClientComponent from './client-component'
 
+ 
 export default async function Home() {
+  
+    
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
   const res =  await getDogBreeds.json()
   const breeds = res.message
- 
-   
+  
   const arrayResult = Object.keys(breeds).map((key) => ({
     dogType: key,
     dogSubType: breeds[key]
   }))  
-
- 
+  
 
   return (
     <>

@@ -1,8 +1,11 @@
 "use client"
 
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import Image from 'next/image'
 import Link from 'next/link'
+ 
+import { Modal } from './components/Modal'
+import BasicModal from './components/BasicModal'
   
 
 export default function ClientComponent({ 
@@ -12,21 +15,17 @@ export default function ClientComponent({
   const [loading, setLoading] = useState(false)
   const [theBreed, setTheBreed] = useState('')
   const [curList, setCurList] = useState(repeat)
-
-  const promise64 = ''
-
+ 
+  
   function displayDog(breed) { 
     setLoading(true) 
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
       .then((res) => res.json())
       .then((data) => {
-        setDog(data.message)
-         
-        
+        setDog(data.message)  
         setTheBreed(breed)
         setLoading(false)        
-      })
-       
+      }) 
   }
 
   function alphabet() {
@@ -41,20 +40,27 @@ export default function ClientComponent({
   const stringAlpha = alphabet()
 
   function filterBreeds(theChar, arr) {
-    console.log('letter is ', theChar)
+     
     const newArr = arr.filter(dList => dList.dogType.charAt(0)  === theChar )
     setCurList(newArr) 
     console.log(newArr)
-  }
+  } 
   
   return (
 
     <>
       <h2 className="text-white text-2xl font-bold">{theBreed}</h2>
+      <BasicModal title='About Dogs Catalog'>
+        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+        Jones Dollesin has created a captivating online dogs catalog, a virtual haven for dog enthusiasts. This website showcases an extensive collection of our furry friends, offering a delightful journey through various breeds, their unique characteristics, and heartwarming stories. From playful puppies to majestic seniors, John's dedication to curating this canine compendium shines through. Whether you're a seasoned dog owner or simply captivated by these loyal companions, John's website promises a wealth of information and adorable moments, celebrating the profound bond between humans and dogs. Explore John's digital dog haven and embark on a journey through the world of canine wonders.
+        </p>
+        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            Credits to https://dog.ceo/dog-api/ for providing a rich API
+        </p> 
+      </BasicModal>
       <div className='border-2 w-full h-[400px] flex justify-center items-center'> 
         
-        {
-          
+        { 
           (loading) ? (
             'Loading...' 
           ) : (
@@ -65,6 +71,7 @@ export default function ClientComponent({
               className='transition-opacity opacity-0 duration-[1s] h-full w-auto'
               onLoadingComplete={(img) => img.classList.remove('opacity-0')}
               onLoad={(_) => setLoading(false)} 
+              alt={theBreed}
                
             /> 
           )
@@ -103,10 +110,8 @@ export default function ClientComponent({
                         )) 
                     : null} 
                   
-              </div>
-              
-            </> 
-            
+              </div> 
+            </>  
           ))}  
         </div> 
     </>
