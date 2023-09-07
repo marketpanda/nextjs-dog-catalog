@@ -7,7 +7,7 @@ export default function Comments() {
   }
 
   return (
-    <form onSubmit={handleSubmit}> 
+    <form onSubmit={handleSubmit} className="mb-2"> 
       
       <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Comments</label>

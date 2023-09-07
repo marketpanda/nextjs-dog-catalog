@@ -150,15 +150,18 @@ export default function ClientComponent({
          
 
 
-        <div className="inline-grid grid-cols-4">
+        <div className="lg:columns-3 columns-2 gap-3 mx-auto space-y-3 pb-28">
         {displaySubBreeds && displaySubBreeds.map((bre, i) => (
-          <div  key={i}>
-            <Image    
-              src={bre}
-              width={150}
-              height={150}
-              alt={bre}
-            />
+          <div key={i} className="break-inside-avoid ">
+            <a href={bre} target="_blank">
+              <Image  
+                className="w-full rounded-lg"   
+                src={bre}
+                width={150}
+                height={150}
+                alt={bre}
+              />
+            </a>
           </div>
         ))}
 
@@ -199,25 +202,27 @@ export default function ClientComponent({
           all
         </button>
       </div>
-      <div> 
+      <div className="flex flex-wrap"> 
           {curList.map((dog, index) =>(
             <> 
-              <div key={index}> 
+              <div key={index} className="bg-lime-200 bg-opacity-50
+              inline-flex items-center flex-wrap"> 
+
+
                   <button
                     onClick={() =>displayDog(dog.dogType)}
-                    className="m-1 py-2 px-4 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex">
+                    className="m-1 px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         {dog.dogType}
                   </button>  
 
                     {dog.dogSubType != '' ? 
                         dog.dogSubType.map((subType) => (
-                            <div className="m-1 py-2 px-4 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex">
-                            <button
-                            
-                              
-                              onClick={() => handleSubBreedImgs(dog.dogType, subType)}
-                            >
-                              {subType}
+                            <div> 
+                              <button
+                                className="m-1 px-3 py-2 text-xs font-medium text-center text-white bg-rose-500 rounded hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick={() => handleSubBreedImgs(dog.dogType, subType)}
+                              > 
+                              {subType}{' '}{ dog.dogType}
                             </button>
                             </div>
                         )) 

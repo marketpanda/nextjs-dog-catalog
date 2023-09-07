@@ -17,16 +17,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
        
-      <body className={`${inter.className} border-2 rounded p-1 mt-1 w-[600px] mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500`}>
+      <body className={`${inter.className} lg:border-2 rounded p-1 mt-1 lg:w-[600px] mx-auto
+       bg-pink-200
+      lg:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500`}>
         <Providers>
           <h1 className='text-center text-white font-bold'><Link href="/">Jones's Dogs Catalog</Link></h1>
           <div className='flex justify-between'>
             <SignInButton />
             <RightMenu />
 
-          </div>
-          
-          
+          </div> 
             {children}
         </Providers>
         </body>
