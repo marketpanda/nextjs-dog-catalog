@@ -3,19 +3,16 @@
 import React, { useEffect, useState } from 'react' 
 import Image from 'next/image'
 import Link from 'next/link'
- 
-import { Modal } from './components/Modal'
+  
 import BasicModal from './components/BasicModal'
-import Comments from './components/Comments'
-
-import { CldImage, cloudinaryLoader, getCldImageUrl } from 'next-cloudinary';
+import Comments from './components/Comments' 
  
-
-
 
 export default function ClientComponent({ 
-    repeat={arrayResult} 
+    repeat,
+    parsedComments
 }) {
+  
   const [dog, setDog] = useState('https://clipart-library.com/images_k/dog-silhouette-png/dog-silhouette-png-7.png')
   const [loading, setLoading] = useState(false)
   const [theBreed, setTheBreed] = useState('')
@@ -38,18 +35,24 @@ export default function ClientComponent({
 
   
   useEffect(() => { 
-    fetch(`https://dog.ceo/api/breed/${theBreed}/list`)
+    if (theBreed != '') {
+      fetch(`https://dog.ceo/api/breed/${theBreed}/list`)
     .then((res) => res.json())
     .then((data) => {
       setSubBreedImage(data.message)
     }) 
+
+    }
+    
   }, [theBreed])
 
   useEffect(() => {
-    console.log(subBreedImage)
+    if (subBreedImage) {
+      console.log(subBreedImage)
+    }
   }, [subBreedImage])
 
-  //display a to z
+  //displays a to z
   function alphabet() {
     let stringAlphabet = []
     for (let i = 97; i <= 122; i++) {
@@ -87,14 +90,20 @@ export default function ClientComponent({
 
   }
 
+  const newArr = Object.values(parsedComments)
 
-  const forCld = `https://images.dog.ceo/breeds/bullterrier-staffordshire/20200820_131119.jpg`
+  {
+    console.log('way to go \n', newArr)
+     
+  }
+
    
 
   
   return (
 
     <>
+      
       <h2 className="text-white text-2xl font-bold">{theBreed}</h2>
       <BasicModal title='About Dogs Catalog'>
         <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
@@ -141,15 +150,21 @@ export default function ClientComponent({
             &nbsp;Share
           </button>
         </div> 
-
-
+ 
       <div>
+        <div>
+          {newArr.map((comment) => (
+            <>
+              <div>{comment.name}</div>
+              <div>{comment.text}</div> 
+            </>
+            
+          ))}
+        </div>
         <Comments />
       </div>
       <div>
-         
-
-
+          
         <div className="lg:columns-3 columns-2 gap-3 mx-auto space-y-3 pb-28">
         {displaySubBreeds && displaySubBreeds.map((bre, i) => (
           <div key={i} className="break-inside-avoid ">

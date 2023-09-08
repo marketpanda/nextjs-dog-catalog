@@ -13,4 +13,11 @@ model Likes {
   likes      String[]
 }
 
+model Comments {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now()) @db.Timestamptz(6)
+  name       String
+  text       String
+}
+
 
