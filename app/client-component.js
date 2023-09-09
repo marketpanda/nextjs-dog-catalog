@@ -6,7 +6,9 @@ import Link from 'next/link'
   
 import BasicModal from './components/BasicModal'
 import Comments from './components/Comments' 
- 
+import { useRouter } from 'next/navigation'
+import moment from 'moment/moment'
+import { FacebookShareButton, FacebookIcon } from 'next-share'
 
 export default function ClientComponent({ 
     repeat,
@@ -20,6 +22,14 @@ export default function ClientComponent({
   const [subBreedImage, setSubBreedImage] = useState()
 
   const [displaySubBreeds, setdisplaySubBreeds] = useState()
+
+  const router = useRouter()
+
+  const refreshData = () => {
+    router.refresh()
+    console.log('works')
+  }
+  
  
   
   function displayDog(breed) { 
@@ -138,28 +148,38 @@ export default function ClientComponent({
             </svg>
             &nbsp;Like
           </button>
-          <button onClick={liked} className="m-2 ml-0 mr-1   bg-red-500 hover:bg-red-700 text-sm text-white py-2 px-4 rounded inline-flex items-center">
+          {/* <button onClick={liked} className="m-2 ml-0 mr-1   bg-red-500 hover:bg-red-700 text-sm text-white py-2 px-4 rounded inline-flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
             </svg>
 
             &nbsp;Share
-          </button>
+            
+          </button> */}
+          <FacebookShareButton><FacebookIcon size={36} borderRadius={8} /></FacebookShareButton>
         </div> 
  
       <div>
         <div>
           {newArr.map((comment, i) => (
             <>
-              <div key={i}>
-                <div>{comment.name}</div>
-                <div>{comment.text}</div> 
-              </div>
+               
+                <div class="flex flex-col space-y-4 my-1">
+                  <div class="bg-white p-4 rounded-lg shadow-md">
+                      <span className="flex justify-between">
+                      <h3 class="text-lg font-bold">{comment.name}</h3>
+                      <p class="text-gray-700 text-sm mb-2">{moment(comment.createdAt).fromNow()}</p>
+                      </span>
+                      <p class="text-gray-700">{comment.text}</p>
+                       
+                  </div>  
+                </div>
+              
             </>
             
           ))}
         </div>
-        <Comments />
+        <Comments refreshData={refreshData} />
       </div>
       <div>
           
@@ -235,9 +255,7 @@ export default function ClientComponent({
                             </button>
                             </div>
                         )) 
-                    : null} 
-
-                  
+                    : null}  
                   
               </div> 
             </>  

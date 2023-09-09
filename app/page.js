@@ -4,15 +4,15 @@ import Head from 'next/head'
  
 import ClientComponent from './client-component'
 import prisma from './lib/prisma' 
+ 
 
 
 export default async function Home() {
 
   const comments2 = await prisma.comments.findMany()  
+    
+ 
   
-  
-   
-  console.log(typeof(comments2))
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
   const res =  await getDogBreeds.json()
   const breeds = res.message
