@@ -181,7 +181,7 @@ export default function ClientComponent({
         </div> 
       </div>
       <div>
-        current: {theBreed} <br/>
+        current: {theBreed} <br/> 
         {  
           
           Array.isArray(subBreedImage) && subBreedImage.length > 0 &&
