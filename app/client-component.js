@@ -95,11 +95,7 @@ export default function ClientComponent({
   {
     console.log('way to go \n', newArr)
      
-  }
-
-   
-
-  
+  } 
   return (
 
     <>
