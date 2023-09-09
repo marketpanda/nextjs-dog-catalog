@@ -161,7 +161,7 @@ export default function ClientComponent({
  
       <div>
         <div>
-          {newArr.map((comment, i) => (
+          {newArr ? (newArr.map((comment, i) => (
             <>
                
                 <div class="flex flex-col space-y-4 my-1">
@@ -177,7 +177,7 @@ export default function ClientComponent({
               
             </>
             
-          ))}
+          ))) : []}
         </div>
         <Comments refreshData={refreshData} />
       </div>
