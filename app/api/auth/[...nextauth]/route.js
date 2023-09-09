@@ -10,7 +10,8 @@ export const authOptions = {
     ],
     pages: {
         home: '/'
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET
 }
 
 const handler = NextAuth(authOptions)
