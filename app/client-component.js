@@ -157,7 +157,7 @@ export default function ClientComponent({
             
           ))}
         </div>
-        <Comments />
+        {/* <Comments /> */}
       </div>
       <div>
           
@@ -176,15 +176,12 @@ export default function ClientComponent({
           </div>
         ))}
 
-        </div>
-       
- 
-
+        </div> 
       </div>
       <div>
         current: {theBreed} <br/>
         { 
-          //"https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"
+          
           
           Array.isArray(subBreedImage) && subBreedImage.length > 0 &&
           subBreedImage.map((img) => (
@@ -239,13 +236,7 @@ export default function ClientComponent({
                         )) 
                     : null} 
 
-                  {
-                    //no subbreed 
-                    //https://images.dog.ceo/breeds/labradoodle/Cali.jpg
-                    //
-                    //with subbreed
-                    //https://images.dog.ceo/breeds/terrier-wheaten/n02098105_773.jpg
-                  }
+                  
                   
               </div> 
             </>  
