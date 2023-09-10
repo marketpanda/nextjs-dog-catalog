@@ -1,11 +1,13 @@
 import React from 'react'
  
-import { get, useForm } from "react-hook-form"
-import prisma from '../lib/prisma'
+import { get, useForm } from "react-hook-form" 
+import moment from 'moment/moment'
 
  
-export default function Comments({refreshData}) { 
+export default function Comments({refreshData, sendComments}) { 
   const {register, handleSubmit,  watch, reset, formState: { errors }} = useForm()
+   
+ 
   const onSubmit =  async (data) => {
 
     if (data.commentName == '') {
@@ -32,14 +34,34 @@ export default function Comments({refreshData}) {
     } catch (e) {
       console.log(e)
     }
-  
-  }
+ 
+ 
+  } 
   
   return (
     <> 
+
+      <div>
+        {sendComments && (sendComments.map((comment, i) => (
+          <>
+            
+              <div class="flex flex-col space-y-4 my-1">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <span className="flex justify-between">
+                    <h3 class="text-lg font-bold">{comment.name}</h3>
+                    <p class="text-gray-700 text-sm mb-2">{moment(comment.createdAt).fromNow()}</p>
+                    </span>
+                    <p class="text-gray-700">{comment.text}</p>
+                    
+                </div>  
+              </div>
+            
+          </>
+          
+        )))  }
+      </div>
     
     <form onSubmit={handleSubmit(onSubmit)} className="mb-2"> 
-
     
       <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name (Optional)</label>
       <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

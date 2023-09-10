@@ -7,12 +7,13 @@ import Link from 'next/link'
 import BasicModal from './components/BasicModal'
 import Comments from './components/Comments' 
 import { useRouter } from 'next/navigation'
-import moment from 'moment/moment'
+
 import { FacebookShareButton, FacebookIcon } from 'next-share'
+ 
 
 export default function ClientComponent({ 
     repeat,
-    parsedComments
+    comments 
 }) {
   
   const [dog, setDog] = useState('https://clipart-library.com/images_k/dog-silhouette-png/dog-silhouette-png-7.png')
@@ -25,12 +26,15 @@ export default function ClientComponent({
 
   const router = useRouter()
 
-  const refreshData = () => {
-    router.refresh()
-    console.log('works')
-  }
   
- 
+
+  const refreshData = (c) => { 
+     
+    router.refresh() 
+     
+  }
+   
+   
   
   function displayDog(breed) { 
     setLoading(true) 
@@ -41,9 +45,8 @@ export default function ClientComponent({
         setTheBreed(breed)
         setLoading(false)     
       }) 
-  }
+  } 
 
-  
   useEffect(() => { 
     if (theBreed != '') {
       fetch(`https://dog.ceo/api/breed/${theBreed}/list`)
@@ -97,15 +100,9 @@ export default function ClientComponent({
       .then((data) => (
         setdisplaySubBreeds(data.message)
       ))
-
   }
 
-  const commentsArr = Object.values(parsedComments)
-
-  {
-    console.log('way to go \n', commentsArr)
-     
-  } 
+  
   return (
 
     <>
@@ -153,26 +150,8 @@ export default function ClientComponent({
         </div> 
  
       <div>
-        <div>
-          {commentsArr ? (commentsArr.map((comment, i) => (
-            <>
-               
-                <div class="flex flex-col space-y-4 my-1">
-                  <div class="bg-white p-4 rounded-lg shadow-md">
-                      <span className="flex justify-between">
-                      <h3 class="text-lg font-bold">{comment.name}</h3>
-                      <p class="text-gray-700 text-sm mb-2">{moment(comment.createdAt).fromNow()}</p>
-                      </span>
-                      <p class="text-gray-700">{comment.text}</p>
-                       
-                  </div>  
-                </div>
-              
-            </>
-            
-          ))) : []}
-        </div>
-        <Comments refreshData={refreshData} />
+       
+        <Comments refreshData={refreshData} sendComments={comments} />
       </div>
       <div>
           

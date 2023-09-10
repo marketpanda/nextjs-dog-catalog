@@ -1,17 +1,12 @@
- 
 import Head from 'next/head' 
- 
- 
 import ClientComponent from './client-component'
-import prisma from './lib/prisma' 
- 
+import prisma from './lib/prisma'
 
 
 export default async function Home() {
 
-  const comments2 = await prisma.comments.findMany()  
-    
- 
+  const theComments = await prisma.comments.findMany()
+  console.log('theComments ', theComments)
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
   const res =  await getDogBreeds.json()
@@ -32,12 +27,11 @@ export default async function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main> 
-        <ClientComponent repeat={arrayResult} parsedComments={comments2} /> 
+        <ClientComponent repeat={arrayResult} comments={theComments}  /> 
       </main>
     </>
   )
 }
-
  
    
     
