@@ -1,7 +1,7 @@
 import Head from 'next/head' 
 import ClientComponent from './client-component'
  
-
+export const revalidate = 0
 export default async function Home() {
 
   async function getData() {

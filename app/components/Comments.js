@@ -3,6 +3,8 @@ import React from 'react'
 import { get, useForm } from "react-hook-form" 
 import moment from 'moment/moment'
 
+
+
  
 export default function Comments({refreshData, comments}) { 
   const {register, handleSubmit,  watch, reset, formState: { errors }} = useForm()
@@ -23,7 +25,8 @@ export default function Comments({refreshData, comments}) {
       await fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(postData)
+        body: JSON.stringify(postData),
+        cache: 'no-store'
       })
         .then(response => {return response.json()})
         .then(data => console.log(data)) 
