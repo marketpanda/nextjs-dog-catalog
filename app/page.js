@@ -5,7 +5,7 @@ import ClientComponent from './client-component'
 export default async function Home() {
 
   async function getData() {
-    const res = await import('. /api/comments/route')
+    const res = await import('./api/comments/route')
     return await ( await res.GET()).json()
   }  
 
