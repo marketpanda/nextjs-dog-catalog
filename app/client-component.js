@@ -6,7 +6,7 @@ import Link from 'next/link'
   
 import BasicModal from './components/BasicModal'
 import Comments from './components/Comments' 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 import { FacebookShareButton, FacebookIcon } from 'next-share'
  
@@ -30,7 +30,8 @@ export default function ClientComponent({
 
   const refreshData = (c) => { 
      
-    router.refresh() 
+    // router.refresh() 
+    router.replace(router.asPath)
      
   }
    
