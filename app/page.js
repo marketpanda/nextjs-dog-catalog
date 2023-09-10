@@ -1,19 +1,15 @@
 import Head from 'next/head' 
 import ClientComponent from './client-component'
-import prisma from './lib/prisma'
-
+ 
 
 export default async function Home() {
 
   async function getData() {
-    const res = await import('./api/comments/route')
+    const res = await import('. /api/comments/route')
     return await ( await res.GET()).json()
   }  
 
   const pullComments = await getData()
-
-  console.log('pullcomments\n',
-  '============================\n', pullComments)
  
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
