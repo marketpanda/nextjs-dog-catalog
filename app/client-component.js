@@ -150,7 +150,7 @@ export default function ClientComponent({
  
       <div>
        
-        <Comments refreshData={refreshData} sendComments={comments} />
+        <Comments refreshData={refreshData} comments={comments} />
       </div>
       <div>
           

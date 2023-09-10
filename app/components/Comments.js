@@ -4,9 +4,9 @@ import { get, useForm } from "react-hook-form"
 import moment from 'moment/moment'
 
  
-export default function Comments({refreshData, sendComments}) { 
+export default function Comments({refreshData, comments}) { 
   const {register, handleSubmit,  watch, reset, formState: { errors }} = useForm()
-   
+
  
   const onSubmit =  async (data) => {
 
@@ -42,7 +42,7 @@ export default function Comments({refreshData, sendComments}) {
     <> 
 
       <div>
-        {sendComments && (sendComments.map((comment, i) => (
+        {comments && (comments.map((comment, i) => (
           <>
             
               <div class="flex flex-col space-y-4 my-1">

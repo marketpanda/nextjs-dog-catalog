@@ -5,8 +5,16 @@ import prisma from './lib/prisma'
 
 export default async function Home() {
 
-  const theComments = await prisma.comments.findMany()
-  console.log('theComments ', theComments)
+  async function getData() {
+    const res = await import('./api/comments/route')
+    return await ( await res.GET()).json()
+  }  
+
+  const pullComments = await getData()
+
+  console.log('pullcomments\n',
+  '============================\n', pullComments)
+ 
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
   const res =  await getDogBreeds.json()
@@ -27,7 +35,7 @@ export default async function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main> 
-        <ClientComponent repeat={arrayResult} comments={theComments}  /> 
+        <ClientComponent repeat={arrayResult} comments={pullComments}  /> 
       </main>
     </>
   )
