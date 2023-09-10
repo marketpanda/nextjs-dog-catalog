@@ -10,6 +10,7 @@ export default async function Home() {
   }  
 
   const pullComments = await getData()
+  console.log('========================\n', pullComments)
  
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
