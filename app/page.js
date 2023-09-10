@@ -1,8 +1,12 @@
 import Head from 'next/head' 
 import ClientComponent from './client-component'
+import { headers } from 'next/headers';
  
-export const revalidate = 0
+// export const revalidate = 0
 export default async function Home() {
+  //use to invoke dynamic page
+  const headersList = headers()
+
 
   async function getData() {
     const res = await import('./api/comments/route')
