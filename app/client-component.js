@@ -28,11 +28,9 @@ export default function ClientComponent({
 
   
 
-  const refreshData = (c) => { 
-     
+  const refreshData = (c) => {  
     // router.refresh() 
-    router.replace(router.asPath)
-     
+    router.replace(router.asPath) 
   }
    
    
