@@ -2,6 +2,9 @@
 const nextConfig = {
     images: {
         domains: ['images.dog.ceo', 'clipart-library.com', 'res.cloudinary.com'] 
+    },
+    experimental: {
+        appDir: true
     }
      
 }
