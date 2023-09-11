@@ -5,10 +5,24 @@ import ClientComponent from './client-component'
 export default async function Home() {
 
   async function getData() {
-    const res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
-      method: 'GET',
-      cache: 'no-store'
-    })
+    let res
+    try {
+        res = await fetch('http://localhost:3000/api/comments', {
+        method: 'GET',
+        cache: 'no-store'
+      }) 
+    } catch (error) {
+      console.log(error)
+    }
+
+    if (!res.ok) {
+      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
+        method: 'GET',
+        cache: 'no-store'
+      }) 
+
+    }
+    
     // return await ( await res.GET()).json()
     return await res.json()
   }  
@@ -39,15 +53,9 @@ export default async function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main> 
-        <h1>Hello</h1>
-        <div>aaa
-        {
-         pullComments && ( pullComments.map((item) => (
-            <div>{item.text}</div>
-          )))
-        }
-        </div>
-        {/* <ClientComponent repeat={arrayResult} comments={pullComments}  />  */}
+       
+        
+        <ClientComponent repeat={arrayResult} comments={pullComments}  /> 
       </main>
     </>
   )
