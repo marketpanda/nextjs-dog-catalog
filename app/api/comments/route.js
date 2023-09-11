@@ -14,6 +14,7 @@ export async function POST(req) {
     return NextResponse.json(comment, {status: 200})
   
 }
+
 export async function GET() { 
  
     const comments = await prisma.comments.findMany()
@@ -25,5 +26,18 @@ export async function GET() {
     } 
   
 }
+
+
+// export default async  function GET() { 
+ 
+//     const comments = await prisma.comments.findMany()
+
+//     try {
+//         return NextResponse.json(comments, {status: 200})
+//     } catch (error) {
+//         return NextResponse.json(error, {status: 500})
+//     } 
+  
+// }
 
  

@@ -9,8 +9,12 @@ export default async function Home() {
   // const headersList = headers()
  
   async function getData() {
-    const res = await import('./api/comments/route')
-    return await ( await res.GET()).json()
+    const res = await fetch('hhttps://dogs-catalog.netlify.app/api/comments', {
+      method: 'GET',
+      cache: 'no-store'
+    })
+    // return await ( await res.GET()).json()
+    return await res.json()
   }  
 
   const pullComments = await getData()
