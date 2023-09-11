@@ -5,7 +5,7 @@ import ClientComponent from './client-component'
 export default async function Home() {
 
   async function getData() {
-    const res = await fetch('http://localhost:3000/api/comments', {
+    const res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
       method: 'GET',
       cache: 'no-store'
     })
