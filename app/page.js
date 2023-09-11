@@ -1,15 +1,11 @@
 import Head from 'next/head' 
 import ClientComponent from './client-component'
-// import { headers } from 'next/headers';
  
-// export const revalidate = 0
  
 export default async function Home() {
-  //use to invoke dynamic page
-  // const headersList = headers()
- 
+
   async function getData() {
-    const res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
+    const res = await fetch('http://localhost:3000/api/comments', {
       method: 'GET',
       cache: 'no-store'
     })
@@ -17,7 +13,7 @@ export default async function Home() {
     return await res.json()
   }  
 
-  const pullComments = await getData()
+  // const pullComments = await getData()
   console.log('========================\n', pullComments)
  
   
@@ -40,7 +36,8 @@ export default async function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main> 
-        <ClientComponent repeat={arrayResult} comments={pullComments}  /> 
+        <h1>Hello</h1>
+        {/* <ClientComponent repeat={arrayResult} comments={pullComments}  />  */}
       </main>
     </>
   )

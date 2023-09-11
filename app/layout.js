@@ -24,8 +24,7 @@ export default function RootLayout({ children }) {
           <h1 className='text-center text-white font-bold'><Link href="/">Jones's Dogs Catalog</Link></h1>
           <div className='flex justify-between'>
             <SignInButton />
-            <RightMenu />
-
+            <RightMenu /> 
           </div> 
             {children}
         </Providers>

@@ -32,8 +32,7 @@ export default function ClientComponent({
     router.refresh() 
      
   }
-   
-   
+    
   
   function displayDog(breed) { 
     setLoading(true) 
@@ -49,8 +48,8 @@ export default function ClientComponent({
   useEffect(() => { 
     if (theBreed != '') {
       fetch(`https://dog.ceo/api/breed/${theBreed}/list`)
-    .then((res) => res.json())
-    .then((data) => {
+      .then((res) => res.json())
+      .then((data) => {
       setSubBreedImage(data.message)
     }) 
 

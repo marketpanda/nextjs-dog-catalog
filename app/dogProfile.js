@@ -8,9 +8,6 @@ export default function Dog({
     dSubType,
     dIndex,
 }) {
-
-    
-
     
     return (
         <div>
