@@ -27,7 +27,7 @@ export default async function Home() {
     {
       id: 1,
       createdAt: '2023-09-08T05:49:24.618Z',
-      name: 'John',
+      name: 'Jsohn',
       text: 'First comment'
     },
     {
