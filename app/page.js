@@ -9,7 +9,7 @@ export default async function Home() {
   // const headersList = headers()
  
   async function getData() {
-    const res = await fetch('hhttps://dogs-catalog.netlify.app/api/comments', {
+    const res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
       method: 'GET',
       cache: 'no-store'
     })
