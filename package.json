@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "prebuild": "node prebuild.js"
+    
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
