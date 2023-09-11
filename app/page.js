@@ -8,7 +8,7 @@ export default async function Home() {
   async function getData() {
     let res
     try {
-      res = await fetch('http://localhost:3000/api/comments', {
+      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
         method: 'GET',
         cache: 'no-store'
       }) 
