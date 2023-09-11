@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 
 import { FacebookShareButton, FacebookIcon } from 'next-share'
  
-
+export const dynamic = 'force-dynamic'
 export default function ClientComponent({ 
     repeat,
     comments 
