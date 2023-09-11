@@ -13,8 +13,11 @@ export default async function Home() {
     return await res.json()
   }  
 
-  // const pullComments = await getData()
-  // console.log('========================\n', pullComments)
+  const pullComments = await getData()
+  console.log(
+    '========================\n',
+    '========================\n',
+    pullComments)
  
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
@@ -37,6 +40,13 @@ export default async function Home() {
       </Head>
       <main> 
         <h1>Hello</h1>
+        <div>aaa
+        {
+         pullComments && ( pullComments.map((item) => (
+            <div>{item.text}</div>
+          )))
+        }
+        </div>
         {/* <ClientComponent repeat={arrayResult} comments={pullComments}  />  */}
       </main>
     </>
