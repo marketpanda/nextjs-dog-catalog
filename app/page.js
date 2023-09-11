@@ -20,8 +20,8 @@ export default async function Home() {
     return await res.json()
   }  
 
-  // const pullComments = await getData()
-  const pullComments = 
+  const pullComments = await getData()
+  const pullComments2 = 
   
   [
     {
