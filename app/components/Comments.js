@@ -2,9 +2,7 @@ import React from 'react'
  
 import { get, useForm } from "react-hook-form" 
 import moment from 'moment/moment'
-
-
-
+ 
  
 export default function Comments({refreshData, comments}) { 
   const {register, handleSubmit,  watch, reset, formState: { errors }} = useForm()

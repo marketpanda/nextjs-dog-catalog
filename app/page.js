@@ -7,16 +7,17 @@ export default async function Home() {
   async function getData() {
     let res
     try {
-        res = await fetch('http://localhost:3000/api/comments', {
+      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
         method: 'GET',
         cache: 'no-store'
       }) 
+       
     } catch (error) {
       console.log(error)
     }
 
     if (!res.ok) {
-      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
+      res = await fetch('http://localhost:3000/api/comments', {
         method: 'GET',
         cache: 'no-store'
       }) 
@@ -42,7 +43,6 @@ export default async function Home() {
     dogType: key,
     dogSubType: breeds[key]
   }))  
-  
 
   return (
     <>
@@ -52,9 +52,7 @@ export default async function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main> 
-       
-        
+      <main>
         <ClientComponent repeat={arrayResult} comments={pullComments}  /> 
       </main>
     </>
