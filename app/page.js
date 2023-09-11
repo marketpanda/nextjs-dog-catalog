@@ -4,35 +4,35 @@ import ClientComponent from './client-component'
  
 export default async function Home() {
 
-  // async function getData() {
-  //   let res
-  //   try {
-  //     res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
-  //       method: 'GET',
-  //       cache: 'no-store'
-  //     }) 
+  async function getData() {
+    let res
+    try {
+      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
+        method: 'GET',
+        cache: 'no-store'
+      }) 
        
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+    } catch (error) {
+      console.log(error)
+    }
 
-  //   if (!res.ok) {
-  //     res = await fetch('http://localhost:3000/api/comments', {
-  //       method: 'GET',
-  //       cache: 'no-store'
-  //     }) 
+    if (!res.ok) {
+      res = await fetch('http://localhost:3000/api/comments', {
+        method: 'GET',
+        cache: 'no-store'
+      }) 
 
-  //   }
+    }
     
-  //   // return await ( await res.GET()).json()
-  //   return await res.json()
-  // }  
+    // return await ( await res.GET()).json()
+    return await res.json()
+  }  
 
-  // const pullComments = await getData()
-  // console.log(
-  //   '========================\n',
-  //   '========================\n',
-  //   pullComments)
+  const pullComments = await getData()
+  console.log(
+    '========================\n',
+    '========================\n',
+    pullComments)
  
   
   const getDogBreeds = await fetch(`https://dog.ceo/api/breeds/list/all`)
@@ -54,7 +54,7 @@ export default async function Home() {
       </Head>
       <main>
         <ClientComponent repeat={arrayResult}
-        // comments={pullComments}
+          comments={pullComments}
         /> 
       </main>
     </>

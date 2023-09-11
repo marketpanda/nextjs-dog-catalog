@@ -13,7 +13,7 @@ import { FacebookShareButton, FacebookIcon } from 'next-share'
 
 export default function ClientComponent({ 
     repeat,
-    // comments 
+    comments 
 }) {
   
   const [dog, setDog] = useState('https://clipart-library.com/images_k/dog-silhouette-png/dog-silhouette-png-7.png')
@@ -148,7 +148,7 @@ export default function ClientComponent({
  
       <div>
        
-        {/* <Comments refreshData={refreshData} comments={comments} /> */}
+        <Comments refreshData={refreshData} comments={comments} />
       </div>
       <div>
           
