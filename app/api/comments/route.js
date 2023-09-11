@@ -26,18 +26,6 @@ export async function GET() {
     } 
   
 }
-
-
-// export default async  function GET() { 
  
-//     const comments = await prisma.comments.findMany()
-
-//     try {
-//         return NextResponse.json(comments, {status: 200})
-//     } catch (error) {
-//         return NextResponse.json(error, {status: 500})
-//     } 
-  
-// }
 
  
