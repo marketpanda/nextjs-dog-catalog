@@ -1,6 +1,7 @@
 import Head from 'next/head' 
 import ClientComponent from './client-component'
  
+export const dynamic = 'force-dynamic'
  
 export default async function Home() {
 
