@@ -6,18 +6,22 @@ export const dynamic = 'force-dynamic'
 export default async function Home() {
 
   async function getData() {
-    let res
+    
     try {
-      res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
+      const res = await fetch('https://dogs-catalog.netlify.app/api/comments', {
         method: 'GET',
         cache: 'no-store'
-      }) 
+      })
+      
+      if (!res.ok) {
+        throw new Error('Failed to fetched data')
+      }
+      const data = await res.json()
+      return data
        
     } catch (error) {
       console.log(error)
     } 
-    
-    return await res.json()
   }  
 
   const pullComments = await getData()
